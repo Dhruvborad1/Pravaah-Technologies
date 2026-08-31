@@ -31,9 +31,9 @@ const ContactUs = () => {
 
   return (
     <section id="contact" className="relative overflow-hidden bg-[#070c1e] px-4 py-20 font-sans text-white selection:bg-cyan-400 selection:text-[#070c1e] sm:px-6 md:py-28 lg:px-8">
-      
+
       {/* ================= PRAVAAH BRAND THEME ANIMATED BACKGROUND ================= */}
-      
+
       {/* 1. Ambient Lighting & Depth Meshes */}
       <div className="pointer-events-none absolute top-[-10%] left-[-10%] h-[550px] w-[550px] rounded-full bg-cyan-500/10 blur-[150px]" />
       <div className="pointer-events-none absolute top-[30%] right-[-10%] h-[600px] w-[600px] rounded-full bg-purple-600/15 blur-[160px]" />
@@ -71,74 +71,74 @@ const ContactUs = () => {
       </div>
 
       {/* 3. Pravaah Dispersed Logo Pixels (Floating Animation) */}
-      <motion.div 
+      <motion.div
         animate={{ y: [-8, 8, -8], x: [-4, 4, -4], opacity: [0.3, 0.7, 0.3] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute top-28 right-[18%] w-3 h-3 rounded-sm bg-purple-500 shadow-[0_0_12px_#a855f7] hidden md:block" 
+        className="pointer-events-none absolute top-28 right-[18%] w-3 h-3 rounded-sm bg-purple-500 shadow-[0_0_12px_#a855f7] hidden md:block"
       />
-      <motion.div 
+      <motion.div
         animate={{ y: [6, -6, 6], x: [3, -3, 3], opacity: [0.4, 0.8, 0.4] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        className="pointer-events-none absolute top-36 right-[14%] w-2 h-2 rounded-sm bg-blue-400 shadow-[0_0_8px_#38bdf8] hidden md:block" 
+        className="pointer-events-none absolute top-36 right-[14%] w-2 h-2 rounded-sm bg-blue-400 shadow-[0_0_8px_#38bdf8] hidden md:block"
       />
-      <motion.div 
+      <motion.div
         animate={{ y: [-5, 5, -5], opacity: [0.2, 0.6, 0.2] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="pointer-events-none absolute top-48 right-[12%] w-2.5 h-2.5 rounded-sm bg-cyan-400 shadow-[0_0_10px_#22d3ee] hidden md:block" 
+        className="pointer-events-none absolute top-48 right-[12%] w-2.5 h-2.5 rounded-sm bg-cyan-400 shadow-[0_0_10px_#22d3ee] hidden md:block"
       />
-      <motion.div 
+      <motion.div
         animate={{ y: [7, -7, 7], opacity: [0.3, 0.7, 0.3] }}
         transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute bottom-36 left-[8%] w-3 h-3 rounded-sm bg-cyan-400/40 border border-cyan-300 hidden md:block" 
+        className="pointer-events-none absolute bottom-36 left-[8%] w-3 h-3 rounded-sm bg-cyan-400/40 border border-cyan-300 hidden md:block"
       />
-      <motion.div 
+      <motion.div
         animate={{ y: [-6, 6, -6], opacity: [0.2, 0.5, 0.2] }}
         transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-        className="pointer-events-none absolute bottom-52 left-[12%] w-2 h-2 rounded-sm bg-purple-400 shadow-[0_0_8px_#c084fc] hidden md:block" 
+        className="pointer-events-none absolute bottom-52 left-[12%] w-2 h-2 rounded-sm bg-purple-400 shadow-[0_0_8px_#c084fc] hidden md:block"
       />
 
       {/* ================= MAIN CONTENT ================= */}
 
       <div className="relative z-10 mx-auto w-full max-w-5xl">
         <div className="mb-14 text-center md:mb-16">
-          
-          <motion.div 
-            initial={{ opacity: 0, y: -8 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }} 
+
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="section-label mb-4"
           >
             <span className="section-label-text">Contact Us</span>
           </motion.div>
 
-          <motion.h2 
-            initial={{ opacity: 0, y: 18 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }} 
-            transition={{ delay: 0.1, duration: 0.6 }} 
-            className="text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl leading-tight"
+          <motion.h2
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1, duration: 0.6 }}
+            className="text-3xl md:text-5xl font-bold tracking-tight leading-tight"
           >
             <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
               Let's Build Something Great Together
             </span>
           </motion.h2>
 
-          <motion.p 
-            initial={{ opacity: 0, y: 18 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }} 
-            transition={{ delay: 0.2, duration: 0.6 }} 
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
             className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-400 sm:text-base"
           >
             Have an idea, project or business challenge?<br />Let's turn it into a powerful digital solution.
           </motion.p>
         </div>
 
-        <motion.div 
-          variants={containerVariants} 
-          initial="hidden" 
-          whileInView="visible" 
-          viewport={{ once: true, margin: '-80px' }} 
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
           className="grid items-center gap-12 lg:grid-cols-5 lg:gap-16"
         >
           {/* Left Column */}
@@ -147,7 +147,7 @@ const ContactUs = () => {
             <p className="max-w-sm text-sm leading-relaxed text-slate-400 sm:text-base">
               Whether you need a new website, custom software, AI solution, automation or full-scale digital innovation.
             </p>
-            
+
             <div className="mt-8 space-y-4">
               <a href="mailto:hello@pravaahtechnologies.com" className="flex items-center gap-3 text-sm text-slate-300 transition-colors hover:text-cyan-300 group">
                 <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-cyan-400/40 bg-cyan-400/10 group-hover:scale-105 transition-transform">
@@ -178,27 +178,27 @@ const ContactUs = () => {
           <motion.div variants={itemVariants} className="lg:col-span-3">
             <div className="rounded-2xl border border-slate-700/80 bg-[#0d142d]/85 p-6 shadow-[0_0_40px_rgba(6,182,212,0.06)] backdrop-blur-xl sm:p-8">
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                
+
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <input 
-                    aria-label="Full Name" 
-                    type="text" 
-                    placeholder="Full Name" 
-                    className="w-full rounded-xl border border-slate-700/60 bg-[#080d20]/80 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 transition-all" 
+                  <input
+                    aria-label="Full Name"
+                    type="text"
+                    placeholder="Full Name"
+                    className="w-full rounded-xl border border-slate-700/60 bg-[#080d20]/80 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 transition-all"
                   />
-                  <input 
-                    aria-label="Email Address" 
-                    type="email" 
-                    placeholder="Email Address" 
-                    className="w-full rounded-xl border border-slate-700/60 bg-[#080d20]/80 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 transition-all" 
+                  <input
+                    aria-label="Email Address"
+                    type="email"
+                    placeholder="Email Address"
+                    className="w-full rounded-xl border border-slate-700/60 bg-[#080d20]/80 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 transition-all"
                   />
                 </div>
 
-                <input 
-                  aria-label="Company or Business" 
-                  type="text" 
-                  placeholder="Company / Business" 
-                  className="w-full rounded-xl border border-slate-700/60 bg-[#080d20]/80 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 transition-all" 
+                <input
+                  aria-label="Company or Business"
+                  type="text"
+                  placeholder="Company / Business"
+                  className="w-full rounded-xl border border-slate-700/60 bg-[#080d20]/80 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 transition-all"
                 />
 
                 <div className="space-y-1.5">
@@ -219,7 +219,7 @@ const ContactUs = () => {
                       </span>
                       <ChevronDown aria-hidden="true" className={`h-4 w-4 shrink-0 text-cyan-300 transition-transform duration-200 ${isProjectTypeOpen ? 'rotate-180' : ''}`} />
                     </button>
-                    
+
                     {isProjectTypeOpen && (
                       <ul role="listbox" aria-labelledby="projectType" className="absolute left-0 right-0 z-30 mt-2 overflow-hidden rounded-xl border border-slate-700 bg-[#0a1128] p-1.5 shadow-2xl backdrop-blur-xl">
                         {projectTypes.map((projectType) => (
@@ -248,22 +248,22 @@ const ContactUs = () => {
                   <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400" htmlFor="projectMessage">
                     Tell us about your project
                   </label>
-                  <textarea 
-                    id="projectMessage" 
-                    rows="4" 
-                    placeholder="Tell us about your goals, features or requirements..." 
-                    className="w-full resize-none rounded-xl border border-slate-700/60 bg-[#080d20]/80 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 transition-all" 
+                  <textarea
+                    id="projectMessage"
+                    rows="4"
+                    placeholder="Tell us about your goals, features or requirements..."
+                    className="w-full resize-none rounded-xl border border-slate-700/60 bg-[#080d20]/80 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 transition-all"
                   />
                 </div>
 
-                <motion.button 
+                <motion.button
                   whileHover={{ scale: 1.015 }}
                   whileTap={{ scale: 0.985 }}
-                  type="submit" 
-                  className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 py-3.5 text-sm font-bold text-slate-950 transition hover:brightness-110 shadow-lg shadow-cyan-500/20"
+                  type="submit"
+                  className="group relative flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 py-3.5 px-6 text-sm font-bold text-white transition hover:brightness-110 shadow-lg shadow-cyan-500/20 leading-normal"
                 >
-                  <span>Send Message</span>
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <span className="flex items-center self-center">Send Message</span>
+                  <ArrowRight className="h-4 w-4 shrink-0 self-center transition-transform group-hover:translate-x-1" />
                 </motion.button>
               </form>
             </div>

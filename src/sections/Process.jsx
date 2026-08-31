@@ -95,11 +95,11 @@ const Process = () => {
           className="text-center max-w-2xl mx-auto mb-28"
         >
           <div className="section-label mb-4">
-            <span className="section-label-text">The Journey</span>
+            <span className="section-label-text">Our Process</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight text-slate-900 mb-5">
-            From Raw Idea to <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-purple-600 to-emerald-600">Market Leader</span>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight leading-tight text-slate-900 mb-5">
+            From Raw Idea to <span className="bg-gradient-to-r from-[#2563EB] to-[#7C3AED] bg-clip-text text-transparent">Market Leader</span>
           </h2>
           
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
@@ -221,34 +221,46 @@ const Process = () => {
         </div>
 
         {/* Floating Light CTA */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-32 relative text-center"
-        >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-6 p-3 sm:pr-8 bg-white border border-slate-200/80 rounded-full shadow-[0_10px_35px_rgba(0,0,0,0.05)] backdrop-blur-sm">
-            <div className="flex items-center gap-3 pl-4">
-              <span className="flex h-3 w-3 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-              </span>
-              <span className="text-xs sm:text-sm font-medium text-slate-700">
-                Ready to transform your idea into reality?
-              </span>
-            </div>
+       <motion.div 
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="mt-20 sm:mt-28 lg:mt-32 relative text-center px-4 w-full flex justify-center"
+>
+  {/* રિસ્પોન્સિવ કન્ટેનર: મોબાઇલમાં રાઉન્ડેડ બોક્સ અને ડેસ્કટોપમાં ફુલ પિલ (Pill) */}
+  <div className="w-full max-w-xl sm:max-w-none sm:w-auto inline-flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 p-3 sm:p-2 sm:pr-2 bg-white/90 border border-slate-200/80 rounded-2xl sm:rounded-full shadow-[0_10px_35px_rgba(0,0,0,0.05)] backdrop-blur-md">
+    
+    {/* ટેક્સ્ટ અને સ્ટેટસ ડોટ */}
+    <div className="flex items-center gap-2.5 sm:gap-3 px-2 sm:pl-4 py-1 sm:py-0">
+      <span className="flex h-2.5 w-2.5 sm:h-3 sm:w-3 relative shrink-0">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-emerald-500"></span>
+      </span>
+      <span className="text-xs sm:text-sm font-medium text-slate-700 text-center sm:text-left leading-snug">
+        Ready to transform your idea into reality?
+      </span>
+    </div>
 
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#contact"
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs uppercase tracking-wider rounded-full transition-all duration-200 shadow-md shadow-slate-900/10"
-            >
-              Start Your Project <ArrowRight className="w-3.5 h-3.5" />
-            </motion.a>
-          </div>
-        </motion.div>
+    <motion.a
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
+      href="#contact"
+      className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-3 sm:gap-3.5 px-6 sm:px-8 py-3 sm:py-3.5 bg-[#0B132B] text-white text-xs sm:text-sm font-semibold rounded-xl sm:rounded-full overflow-hidden transition-all duration-300 shadow-[0_8px_25px_-4px_rgba(11,19,43,0.35)] hover:shadow-[0_12px_30px_-2px_rgba(99,102,241,0.35)] border border-white/10 hover:border-indigo-500/50 cursor-pointer shrink-0"
+    >
+      <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 via-sky-500/20 to-indigo-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+
+      <span className="relative z-10 tracking-wide transition-colors duration-300 group-hover:text-white whitespace-nowrap">
+        Start Your Project
+      </span>
+
+      <div className="relative z-10 w-3.5 h-3.5 sm:w-4 sm:h-4 overflow-hidden shrink-0">
+        <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white absolute transition-transform duration-300 ease-out group-hover:translate-x-6 group-hover:opacity-0" />
+        <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400 absolute -translate-x-6 opacity-0 transition-transform duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100" />
+      </div>
+    </motion.a>
+  </div>
+</motion.div>
 
       </div>
     </section>

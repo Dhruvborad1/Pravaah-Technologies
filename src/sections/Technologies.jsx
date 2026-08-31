@@ -1,30 +1,48 @@
-
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, Layers } from 'lucide-react';
 import LogoIcon from '../assets/logo/Logo PNG Icon.png';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
+
+// કેટેગરી લિસ્ટ
+const categories = [
+  { id: 'all', label: 'All Technologies' },
+  { id: 'frontend', label: 'Frontend & UI' },
+  { id: 'backend', label: 'Backend & APIs' },
+  { id: 'database', label: 'Databases' },
+  { id: 'cloud', label: 'Cloud & DevOps' },
+  { id: 'ai', label: 'AI & Tools' },
+];
 
 const technologiesList = [
   // LEFT WING (x < 600)
-  { id: 'react', name: 'React.js', x: 300, y: 150, delay: '0s', icon: 'react' },
-  { id: 'next', name: 'Next.js', x: 200, y: 250, delay: '1.2s', icon: 'next' },
-  { id: 'node', name: 'Node.js', x: 120, y: 350, delay: '2.4s', icon: 'node' },
-  { id: 'js', name: 'JavaScript', x: 420, y: 240, delay: '1.8s', icon: 'js' },
-  { id: 'python', name: 'Python', x: 300, y: 400, delay: '0.6s', icon: 'python' },
-  { id: 'ts', name: 'TypeScript', x: 400, y: 480, delay: '3s', icon: 'ts' },
-  
+  { id: 'react', name: 'React.js', category: 'frontend', x: 280, y: 140, delay: '0s', icon: 'react' },
+  { id: 'next', name: 'Next.js', category: 'frontend', x: 170, y: 240, delay: '1.2s', icon: 'next' },
+  { id: 'tailwind', name: 'Tailwind CSS', category: 'frontend', x: 140, y: 350, delay: '0.5s', icon: 'tailwind' },
+  { id: 'js', name: 'JavaScript', category: 'frontend', x: 400, y: 210, delay: '1.8s', icon: 'js' },
+  { id: 'python', name: 'Python', category: 'backend', x: 280, y: 410, delay: '0.6s', icon: 'python' },
+  { id: 'ts', name: 'TypeScript', category: 'frontend', x: 380, y: 490, delay: '3s', icon: 'ts' },
+
   // RIGHT WING (x > 600)
-  { id: 'mongo', name: 'MongoDB', x: 750, y: 130, delay: '0.3s', icon: 'mongo' },
-  { id: 'aws', name: 'AWS', x: 860, y: 200, delay: '1.5s', icon: 'aws' },
-  { id: 'docker1', name: 'Docker', x: 980, y: 270, delay: '2.7s', icon: 'docker' },
-  { id: 'docker2', name: 'Docker', x: 800, y: 320, delay: '1.1s', icon: 'docker' },
-  { id: 'github', name: 'GitHub', x: 700, y: 390, delay: '0.9s', icon: 'github' },
-  { id: 'openai', name: 'OpenAI', x: 920, y: 390, delay: '2.1s', icon: 'openai' },
-  { id: 'php', name: 'PHP', x: 620, y: 460, delay: '3.3s', icon: 'php' },
-  { id: 'tailwind', name: 'Tailwind CSS', x: 800, y: 500, delay: '0.5s', icon: 'tailwind' },
+  { id: 'openai', name: 'OpenAI / LLMs', category: 'ai', x: 780, y: 130, delay: '2.1s', icon: 'openai' },
+  { id: 'aws', name: 'AWS Cloud', category: 'cloud', x: 890, y: 200, delay: '1.5s', icon: 'aws' },
+  { id: 'docker', name: 'Docker', category: 'cloud', x: 1010, y: 290, delay: '2.7s', icon: 'docker' },
+  { id: 'github', name: 'GitHub CI/CD', category: 'cloud', x: 840, y: 310, delay: '0.9s', icon: 'github' },
+  { id: 'mongo', name: 'MongoDB', category: 'database', x: 760, y: 410, delay: '0.3s', icon: 'mongo' },
+  { id: 'php', name: 'PHP', category: 'backend', x: 630, y: 490, delay: '3.3s', icon: 'php' },
+  { id: 'node', name: 'Node.js', category: 'backend', x: 820, y: 490, delay: '2.4s', icon: 'node' },
 ];
 
+// કેટેગરી કલર મેપિંગ
+const categoryBadgeColors = {
+  frontend: { dot: 'bg-cyan-500', text: 'text-cyan-600', tag: 'Frontend' },
+  backend: { dot: 'bg-emerald-500', text: 'text-emerald-600', tag: 'Backend' },
+  database: { dot: 'bg-amber-500', text: 'text-amber-600', tag: 'Database' },
+  cloud: { dot: 'bg-blue-600', text: 'text-blue-600', tag: 'Cloud' },
+  ai: { dot: 'bg-purple-600', text: 'text-purple-600', tag: 'AI & Tools' },
+};
+
 const renderTechIcon = (type) => {
-  const iconClass = "w-4 h-4 sm:w-[20px] sm:h-[20px] text-[#0f172a]";
+  const iconClass = "w-4 h-4 sm:w-[18px] sm:h-[18px] text-[#0f172a]";
   switch (type) {
     case 'react':
       return (
@@ -37,7 +55,7 @@ const renderTechIcon = (type) => {
       );
     case 'next':
       return (
-        <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#0f172a] text-white flex items-center justify-center font-bold text-[10px] sm:text-[11px]">
+        <div className="w-4 h-4 sm:w-4.5 sm:h-4.5 rounded-full bg-[#0f172a] text-white flex items-center justify-center font-bold text-[10px]">
           N
         </div>
       );
@@ -54,18 +72,18 @@ const renderTechIcon = (type) => {
         </svg>
       );
     case 'js':
-      return <span className="px-1 py-[1px] bg-[#0f172a] text-white font-bold text-[9px] sm:text-[10px] rounded-[3px]">JS</span>;
+      return <span className="px-1 py-[1px] bg-[#0f172a] text-white font-bold text-[9px] rounded-[3px]">JS</span>;
     case 'ts':
-      return <span className="px-1 py-[1px] bg-[#0f172a] text-white font-bold text-[9px] sm:text-[10px] rounded-[3px]">TS</span>;
+      return <span className="px-1 py-[1px] bg-[#0f172a] text-white font-bold text-[9px] rounded-[3px]">TS</span>;
     case 'mongo':
       return (
-        <svg className="w-3 h-4 sm:w-[14px] sm:h-[18px] text-[#0f172a]" viewBox="0 0 24 24" fill="currentColor">
+        <svg className="w-3.5 h-4 text-[#0f172a]" viewBox="0 0 24 24" fill="currentColor">
           <path d="M11.66 0C8.36 0 6.64 3.73 6.64 6.77c0 4.1 3.57 6.42 4.96 11.58.11.41.22 1.34.22 1.34s.13-1.07.24-1.53c1.23-5.22 4.94-7.25 4.94-11.39C17.02 3.73 15.3 0 11.66 0z" />
-          <path d="M11.83 24s.73-1.55 1.09-3.79c-1.35.43-3.15-.02-3.15-.02s.54 1.76.99 3.81z" fill="currentColor"/>
+          <path d="M11.83 24s.73-1.55 1.09-3.79c-1.35.43-3.15-.02-3.15-.02s.54 1.76.99 3.81z" />
         </svg>
       );
     case 'aws':
-      return <span className="text-[10px] sm:text-[12px] font-black tracking-tighter text-[#0f172a]">aws</span>;
+      return <span className="text-[11px] font-black tracking-tighter text-[#0f172a]">aws</span>;
     case 'docker':
       return (
         <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor">
@@ -85,7 +103,7 @@ const renderTechIcon = (type) => {
         </svg>
       );
     case 'php':
-      return <span className="font-extrabold italic text-[10px] sm:text-[11px] text-[#0f172a] border border-[#0f172a] rounded-full px-1.5 py-0.5 bg-slate-100">php</span>;
+      return <span className="font-extrabold italic text-[10px] text-[#0f172a] border border-[#0f172a] rounded-full px-1.5 py-0.5 bg-slate-100">php</span>;
     case 'tailwind':
       return (
         <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor">
@@ -98,239 +116,284 @@ const renderTechIcon = (type) => {
 };
 
 const Technologies = () => {
+  const [activeCategory, setActiveCategory] = useState('all');
+
   return (
-    <section className="relative w-full py-10 lg:py-16 bg-[#e2e6ed] text-slate-900 overflow-hidden font-sans select-none border-t border-white/50">
+    <section className="relative w-full py-12 lg:py-20 bg-[#e6eaf0] text-slate-900 overflow-hidden font-sans select-none border-t border-white/60">
       
-      {/* Custom Styles for Animations */}
+      {/* Keyframe Styles */}
       <style>{`
         @keyframes float-badge {
           0%, 100% { transform: translate(-50%, -50%) translateY(0); }
-          50% { transform: translate(-50%, -50%) translateY(-10px); }
+          50% { transform: translate(-50%, -50%) translateY(-6px); }
         }
         @keyframes line-flow {
           from { stroke-dashoffset: 60; }
           to { stroke-dashoffset: 0; }
         }
-        @keyframes particle-drift {
-          0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0; }
-          20% { opacity: 0.8; }
-          80% { opacity: 0.8; }
-          100% { transform: translate(150px, -80px) scale(0) rotate(180deg); opacity: 0; }
-        }
         @keyframes subtle-pulse {
-          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-          50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.85; }
+          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.45; }
+          50% { transform: translate(-50%, -50%) scale(1.18); opacity: 0.8; }
         }
       `}</style>
 
-      {/* ============================================== */}
-      {/* BACKGROUND: Soft Gradients + Tech Grid + Ambient Orbs */}
-      {/* ============================================== */}
-      
-      {/* Dynamic Grid Overlay to remove emptiness */}
+      {/* Grid Background Pattern */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-[0.35]" 
+        className="absolute inset-0 pointer-events-none opacity-[0.3]" 
         style={{
-          backgroundImage: `radial-gradient(rgba(100, 116, 139, 0.25) 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(rgba(71, 85, 105, 0.3) 1px, transparent 1px)`,
           backgroundSize: '24px 24px'
         }} 
       />
 
-      {/* Base Soft Glows & Ambient Orbs */}
-      <div className="absolute top-0 right-[-5%] w-[650px] h-[650px] bg-blue-400/25 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-[-10%] w-[550px] h-[550px] bg-purple-400/20 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-indigo-300/30 rounded-full blur-[130px] pointer-events-none" />
+      {/* Ambient Glows */}
+      <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-sky-400/20 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-[550px] h-[550px] bg-indigo-400/20 rounded-full blur-[140px] pointer-events-none" />
 
-      {/* Background Neural Data Waves & Concentric Circuit Rings */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-50 mix-blend-color-burn" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="wave1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#818cf8" stopOpacity="0" />
-            <stop offset="20%" stopColor="#818cf8" stopOpacity="0.4" />
-            <stop offset="50%" stopColor="#4f46e5" stopOpacity="0.6" />
-            <stop offset="80%" stopColor="#38bdf8" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#38bdf8" stopOpacity="0" />
-          </linearGradient>
-          <linearGradient id="wave2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#a78bfa" stopOpacity="0" />
-            <stop offset="30%" stopColor="#a78bfa" stopOpacity="0.5" />
-            <stop offset="70%" stopColor="#818cf8" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#818cf8" stopOpacity="0" />
-          </linearGradient>
-        </defs>
+      <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Flowing background paths */}
-        <g stroke="url(#wave1)" strokeWidth="1" fill="none">
-          <path d="M-100 350 C 300 450, 400 250, 720 400 C 1040 550, 1140 350, 1540 450" />
-          <path d="M-100 370 C 320 470, 420 270, 720 400 C 1020 530, 1120 330, 1540 470" />
-          <path d="M-100 390 C 340 490, 440 290, 720 400 C 1000 510, 1100 310, 1540 490" />
-          <path d="M-100 330 C 280 430, 380 230, 720 400 C 1060 570, 1160 370, 1540 430" />
-          <path d="M-100 310 C 260 410, 360 210, 720 400 C 1080 590, 1180 390, 1540 410" />
-          <path d="M-100 290 C 240 390, 340 190, 720 400 C 1100 610, 1200 410, 1540 390" />
-        </g>
-        <g stroke="url(#wave2)" strokeWidth="1.5" fill="none">
-          <path d="M-100 450 C 400 550, 500 350, 720 400 C 940 450, 1040 250, 1540 350" />
-          <path d="M-100 470 C 420 570, 520 370, 720 400 C 920 430, 1020 230, 1540 330" />
-          <path d="M-100 430 C 380 530, 480 330, 720 400 C 960 470, 1060 270, 1540 370" />
-        </g>
-
-        {/* Center Target Circuit Radii */}
-        <circle cx="720" cy="400" r="160" stroke="#6366f1" strokeWidth="0.8" fill="none" strokeDasharray="6 6" opacity="0.4" />
-        <circle cx="720" cy="400" r="260" stroke="#818cf8" strokeWidth="0.8" fill="none" strokeDasharray="4 8" opacity="0.3" />
-        <circle cx="720" cy="400" r="380" stroke="#94a3b8" strokeWidth="0.5" fill="none" strokeDasharray="3 6" opacity="0.25" />
-
-        {/* Side geometric rings */}
-        <circle cx="150" cy="250" r="200" stroke="#94a3b8" strokeWidth="0.5" fill="none" strokeDasharray="4 8" opacity="0.4" />
-        <circle cx="150" cy="250" r="300" stroke="#94a3b8" strokeWidth="0.5" fill="none" strokeDasharray="4 8" opacity="0.3" />
-        <circle cx="1250" cy="550" r="250" stroke="#94a3b8" strokeWidth="0.5" fill="none" strokeDasharray="4 8" opacity="0.4" />
-        <circle cx="1250" cy="550" r="350" stroke="#94a3b8" strokeWidth="0.5" fill="none" strokeDasharray="4 8" opacity="0.3" />
-      </svg>
-
-      <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
-        
-        {/* ============================================== */}
-        {/* HEADER */}
-        {/* ============================================== */}
-        <div className="text-center max-w-3xl mx-auto mb-4 lg:mb-6">
-          <div className="section-label mb-4">
+        {/* SECTION HEADER */}
+        <div className="text-center max-w-3xl mx-auto mb-10 lg:mb-12">
+          <div className="section-label mb-3 inline-flex items-center gap-1.5">
             <span className="section-label-text">TECHNOLOGIES</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-[40px] font-bold text-[#0f172a] mb-2 tracking-tight leading-tight">
-            Powered by Modern Technology
+          <h2 className="text-3xl md:text-5xl font-bold text-[#0f172a] mb-3 tracking-tight leading-tight">
+            Powered by Modern  <span className="bg-gradient-to-r from-[#2563EB] to-[#7C3AED] bg-clip-text text-transparent">Technology</span>
           </h2>
-          <p className="text-[#475569] text-[14px] sm:text-[15px] leading-relaxed max-w-xl mx-auto font-medium">
-            We use the right technologies to build reliable, scalable<br className="hidden sm:inline" /> and future-ready digital solutions.
+          <p className="text-[#475569] text-sm sm:text-base leading-relaxed max-w-xl mx-auto font-medium">
+            We architect and build reliable, high-performance solutions with proven and emerging modern tools.
           </p>
         </div>
 
-        {/* ============================================== */}
-        {/* DESKTOP & TABLET VIEW: Interactive Network Layout */}
-        {/* ============================================== */}
-        <div className="relative w-full max-w-[1200px] mx-auto aspect-[2/1] hidden md:block my-2">
+        {/* ======================================================================= */}
+        {/* DESKTOP VIEW: PROPORTIONAL GRID (SIDEBAR + SVG GRAPH) */}
+        {/* ======================================================================= */}
+        <div className="hidden md:grid md:grid-cols-12 gap-6 items-center w-full max-w-[1360px] mx-auto">
           
-          {/* Connecting SVG Lines */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet">
-            <g fill="none" stroke="#6366f1" strokeWidth="1.5" className="opacity-50" style={{ strokeDasharray: '4 8', animation: 'line-flow 15s linear infinite' }}>
-              {/* Left connections */}
-              <path d="M 600 300 C 500 200, 400 150, 300 150" />
-              <path d="M 600 300 C 500 300, 300 250, 200 250 C 150 250, 150 350, 120 350" />
-              <path d="M 600 300 C 500 260, 480 240, 420 240" />
-              <path d="M 600 300 C 500 380, 400 400, 300 400" />
-              <path d="M 600 300 C 550 450, 480 480, 400 480" />
-
-              {/* Right connections */}
-              <path d="M 600 300 C 650 200, 700 130, 750 130" />
-              <path d="M 600 300 C 700 250, 780 200, 860 200 C 920 200, 950 270, 980 270" />
-              <path d="M 600 300 C 700 320, 750 320, 800 320" />
-              <path d="M 600 300 C 650 390, 680 390, 700 390 C 800 390, 850 390, 920 390" />
-              <path d="M 600 300 C 600 400, 610 460, 620 460 C 680 460, 750 500, 800 500" />
-            </g>
-
-            {/* Glowing Dots */}
-            <g fill="#38bdf8">
-              {technologiesList.map((tech) => (
-                 <circle key={`dot-${tech.id}`} cx={tech.x} cy={tech.y} r="3.5" className="animate-pulse" style={{ animationDelay: tech.delay }} />
-              ))}
-            </g>
-          </svg>
-
-          {/* Animated Particles bursting from center */}
-          <div className="absolute top-[50%] left-[50%] w-0 h-0 pointer-events-none z-10">
-            {[...Array(12)].map((_, i) => (
-              <div 
-                key={`particle-${i}`}
-                className={`absolute rounded-sm ${i % 2 === 0 ? 'bg-indigo-600' : 'bg-purple-500'} ${i % 3 === 0 ? 'w-2 h-2' : 'w-1.5 h-1.5'}`}
-                style={{
-                  left: `${20 + Math.random() * 40}px`,
-                  top: `${-40 + Math.random() * 80}px`,
-                  animation: `particle-drift ${2 + Math.random() * 3}s linear infinite`,
-                  animationDelay: `${Math.random() * 3}s`
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Center Logo - Enlarged Size & Enhanced Glow */}
-          <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[30%] max-w-[360px] aspect-square flex items-center justify-center z-10">
-            {/* Pulsing Core Glow */}
-            <div className="absolute top-[50%] left-[50%] w-[90%] h-[90%] bg-blue-500/25 rounded-full blur-[45px]" style={{ animation: 'subtle-pulse 4s ease-in-out infinite' }} />
-            <img 
-              src={LogoIcon} 
-              alt="Logo Core" 
-              className="w-[95%] h-[95%] object-contain drop-shadow-[0_20px_45px_rgba(59,130,246,0.4)] relative z-10 hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-
-          {/* Floating Technology Badges */}
-          {technologiesList.map((tech) => (
-            <div
-              key={tech.id}
-              className="absolute z-20"
-              style={{
-                left: `${(tech.x / 1200) * 100}%`,
-                top: `${(tech.y / 600) * 100}%`,
-                transform: 'translate(-50%, -50%)',
-                animation: `float-badge 5s ease-in-out infinite`,
-                animationDelay: tech.delay
-              }}
-            >
-              <div className="flex items-center gap-2 px-3 py-1.5 lg:px-4 lg:py-2 bg-white/90 backdrop-blur-md rounded-[20px] shadow-[0_6px_16px_rgba(0,0,0,0.06)] border border-white hover:bg-white hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)] transition-all duration-300 cursor-default group">
-                <div className="group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                  {renderTechIcon(tech.icon)}
-                </div>
-                <span className="text-[12px] lg:text-[14px] font-semibold text-slate-800 tracking-tight whitespace-nowrap">
-                  {tech.name}
-                </span>
-              </div>
+          {/* 1. LEFT SIDEBAR FILTERS (Col Span 3) */}
+          <div className="md:col-span-3 flex flex-col gap-2 p-3.5 bg-white/80 backdrop-blur-xl rounded-2xl border border-white/90 shadow-[0_10px_35px_rgba(15,23,42,0.06)] z-30">
+            <div className="px-3 py-1.5 text-[11px] font-mono font-bold tracking-wider text-slate-400 uppercase border-b border-slate-200/70 mb-1 flex items-center justify-between">
+              <span>Filter Categories</span>
+              <span className="text-[10px] text-slate-400">({technologiesList.length})</span>
             </div>
-          ))}
+
+            {categories.map((cat) => {
+              const isActive = activeCategory === cat.id;
+              const count = cat.id === 'all' 
+                ? technologiesList.length 
+                : technologiesList.filter(t => t.category === cat.id).length;
+
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`px-3.5 py-2.5 rounded-xl text-left text-xs font-semibold transition-all duration-200 flex items-center justify-between gap-2 ${
+                    isActive
+                      ? 'bg-[#0f172a] text-white shadow-md scale-[1.02]'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/90'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />}
+                    <span>{cat.label}</span>
+                  </div>
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
+                    isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
+                  }`}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* 2. GRAPH DISPLAY AREA (Col Span 9) */}
+          <div className="md:col-span-9 relative w-full aspect-[1200/600] rounded-3xl bg-white/30 border border-white/60 backdrop-blur-sm shadow-[inset_0_2px_10px_rgba(255,255,255,0.6)] overflow-visible">
+            
+            {/* SVG Connecting Lines */}
+            <svg 
+              className="absolute inset-0 w-full h-full pointer-events-none" 
+              viewBox="0 0 1200 600" 
+              preserveAspectRatio="none"
+            >
+              <g 
+                fill="none" 
+                stroke="#6366f1" 
+                strokeWidth="1.5" 
+                className="opacity-45" 
+                style={{ strokeDasharray: '4 8', animation: 'line-flow 18s linear infinite' }}
+              >
+                <path d="M 600 300 C 480 200, 380 140, 280 140" />
+                <path d="M 600 300 C 440 250, 270 240, 170 240" />
+                <path d="M 600 300 C 400 330, 260 350, 140 350" />
+                <path d="M 600 300 C 510 240, 460 210, 400 210" />
+                <path d="M 600 300 C 490 380, 370 410, 280 410" />
+                <path d="M 600 300 C 510 420, 440 490, 380 490" />
+                
+                <path d="M 600 300 C 690 190, 730 130, 780 130" />
+                <path d="M 600 300 C 740 240, 810 200, 890 200" />
+                <path d="M 600 300 C 770 300, 890 290, 1010 290" />
+                <path d="M 600 300 C 730 310, 780 310, 840 310" />
+                <path d="M 600 300 C 690 380, 720 410, 760 410" />
+                <path d="M 600 300 C 620 420, 625 470, 630 490" />
+                <path d="M 600 300 C 700 430, 760 480, 820 490" />
+              </g>
+
+              {/* Glowing Dots on Endpoints */}
+              <g fill="#38bdf8">
+                {technologiesList.map((tech) => {
+                  const isMatch = activeCategory === 'all' || activeCategory === tech.category;
+                  return (
+                    <circle
+                      key={`dot-${tech.id}`}
+                      cx={tech.x}
+                      cy={tech.y}
+                      r={isMatch ? "4.5" : "2.5"}
+                      className="transition-all duration-300"
+                      fill={isMatch ? '#38bdf8' : '#94a3b8'}
+                      opacity={isMatch ? 0.9 : 0.25}
+                    />
+                  );
+                })}
+              </g>
+            </svg>
+
+            {/* Center Logo Hub */}
+            <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[24%] max-w-[260px] aspect-square flex items-center justify-center z-10 pointer-events-none">
+              <div 
+                className="absolute top-[50%] left-[50%] w-[90%] h-[90%] bg-blue-500/25 rounded-full blur-[40px]" 
+                style={{ animation: 'subtle-pulse 4s ease-in-out infinite' }} 
+              />
+              <img 
+                src={LogoIcon} 
+                alt="Core Stack Hub" 
+                className="w-[90%] h-[90%] object-contain drop-shadow-[0_16px_36px_rgba(59,130,246,0.35)] relative z-10"
+              />
+            </div>
+
+            {/* Floating Tech Badges */}
+            {technologiesList.map((tech) => {
+              const isMatch = activeCategory === 'all' || activeCategory === tech.category;
+              const catInfo = categoryBadgeColors[tech.category];
+
+              return (
+                <div
+                  key={tech.id}
+                  className={`absolute z-20 transition-all duration-500 ${
+                    isMatch ? 'opacity-100 scale-100' : 'opacity-20 scale-90 grayscale pointer-events-none'
+                  }`}
+                  style={{
+                    left: `${(tech.x / 1200) * 100}%`,
+                    top: `${(tech.y / 600) * 100}%`,
+                    transform: 'translate(-50%, -50%)',
+                    animation: isMatch ? 'float-badge 4.5s ease-in-out infinite' : 'none',
+                    animationDelay: tech.delay
+                  }}
+                >
+                  <div className={`flex flex-col gap-0.5 px-3 py-1.5 lg:px-3.5 lg:py-2 bg-white/95 backdrop-blur-md rounded-[16px] shadow-[0_6px_18px_rgba(0,0,0,0.06)] border ${
+                    isMatch ? 'border-white hover:border-slate-300' : 'border-slate-200'
+                  } hover:bg-white hover:shadow-[0_12px_24px_rgba(0,0,0,0.12)] hover:scale-105 transition-all duration-300 cursor-default group`}>
+                    
+                    <div className="flex items-center gap-1.5">
+                      <div className="group-hover:scale-110 transition-transform duration-300 shrink-0">
+                        {renderTechIcon(tech.icon)}
+                      </div>
+                      <span className="text-[12px] lg:text-[13px] font-bold text-slate-800 tracking-tight whitespace-nowrap">
+                        {tech.name}
+                      </span>
+                      <span className={`w-1.5 h-1.5 rounded-full ${catInfo.dot}`} />
+                    </div>
+
+                    <span className={`text-[8.5px] font-semibold tracking-wider uppercase pl-5 ${catInfo.text}`}>
+                      {catInfo.tag}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
 
         </div>
 
-        {/* ============================================== */}
-        {/* MOBILE RESPONSIVE VIEW */}
-        {/* ============================================== */}
-        <div className="w-full flex md:hidden flex-col items-center gap-6 my-4 relative z-10">
+        {/* ======================================================================= */}
+        {/* MOBILE VIEW */}
+        {/* ======================================================================= */}
+        <div className="w-full flex md:hidden flex-col items-center gap-6 my-2 relative z-10">
           
-          {/* Logo Center Display on Mobile (Enlarged) */}
-          <div className="w-[220px] h-[220px] flex items-center justify-center relative">
-            <div className="absolute top-[50%] left-[50%] w-[90%] h-[90%] bg-blue-400/25 rounded-full blur-3xl" style={{ animation: 'subtle-pulse 3s ease-in-out infinite' }} />
+          <div className="w-[150px] h-[150px] flex items-center justify-center relative">
+            <div className="absolute top-[50%] left-[50%] w-[90%] h-[90%] bg-blue-400/25 rounded-full blur-2xl" style={{ animation: 'subtle-pulse 3s ease-in-out infinite' }} />
             <img 
               src={LogoIcon} 
               alt="Logo Core" 
-              className="w-full h-auto object-contain drop-shadow-[0_12px_30px_rgba(59,130,246,0.35)] z-10 relative"
+              className="w-full h-auto object-contain drop-shadow-[0_10px_25px_rgba(59,130,246,0.3)] z-10 relative"
             />
           </div>
 
-          {/* Mobile Badges Flow */}
-          <div className="flex flex-wrap justify-center gap-2.5 max-w-[360px] px-2">
-            {technologiesList.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-white flex items-center gap-2 text-[12px] font-semibold text-slate-800 hover:scale-105 transition-transform"
+          {/* Mobile Categories */}
+          <div className="flex flex-wrap justify-center gap-1.5 p-1.5 bg-white/80 rounded-2xl border border-white max-w-[360px] shadow-sm">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors ${
+                  activeCategory === cat.id ? 'bg-[#0f172a] text-white' : 'text-slate-600'
+                }`}
               >
-                {renderTechIcon(item.icon)}
-                <span>{item.name}</span>
-              </div>
+                {cat.label}
+              </button>
             ))}
+          </div>
+
+          {/* Mobile Badge Chips */}
+          <div className="flex flex-wrap justify-center gap-2 max-w-[380px] px-2">
+            {technologiesList.map((item, idx) => {
+              const isMatch = activeCategory === 'all' || activeCategory === item.category;
+              const catInfo = categoryBadgeColors[item.category];
+
+              return (
+                <div
+                  key={idx}
+                  className={`bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-white flex items-center gap-2 text-[12px] font-semibold text-slate-800 transition-all duration-300 ${
+                    isMatch ? 'opacity-100 scale-100' : 'opacity-30 scale-95 grayscale'
+                  }`}
+                >
+                  {renderTechIcon(item.icon)}
+                  <span>{item.name}</span>
+                  <span className={`w-1.5 h-1.5 rounded-full ${catInfo.dot}`} />
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* ============================================== */}
         {/* FOOTER CTA */}
-        {/* ============================================== */}
-        <div className="text-center mt-4 lg:mt-6 z-20 flex flex-col items-center relative">
-          <p className="text-[14px] sm:text-[15px] text-slate-700 font-medium mb-3">
+        <div className="text-center mt-12 z-20 flex flex-col items-center relative">
+          <p className="text-sm sm:text-[15px] text-slate-700 font-medium mb-3">
             Built with the right technology for the right solution.
           </p>
           
-          <a
-            href="#technologies"
-            className="inline-flex items-center gap-2 text-[14px] font-bold text-[#0f172a] hover:text-indigo-600 transition-colors duration-200 group bg-white/40 px-5 py-2 rounded-full border border-slate-300/50 hover:bg-white/70"
-          >
-            <span>Explore Our Technology Stack</span>
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-          </a>
+         <div className="pt-2">
+  <motion.a
+    whileHover={{ scale: 1.03 }}
+    whileTap={{ scale: 0.97 }}
+    href="#technologies"
+    className="group relative inline-flex items-center gap-3.5 px-8 py-3.5 bg-[#0B132B] text-white text-sm font-semibold rounded-full overflow-hidden transition-all duration-300 shadow-[0_8px_25px_-4px_rgba(11,19,43,0.35)] hover:shadow-[0_12px_30px_-2px_rgba(99,102,241,0.35)] border border-white/10 hover:border-indigo-500/50 cursor-pointer"
+  >
+    {/* બેકગ્રાઉન્ડ હોવર ગ્રેડિયન્ટ ઇફેક્ટ */}
+    <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 via-sky-500/20 to-indigo-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+
+    {/* બટન ટેક્સ્ટ */}
+    <span className="relative z-10 tracking-wide transition-colors duration-300 group-hover:text-white">
+      Explore Our Technology Stack
+    </span>
+
+    {/* યુનિક ડ્યુઅલ એરો એનિમેશન */}
+    <div className="relative z-10 w-4 h-4 overflow-hidden">
+      <ArrowRight className="w-4 h-4 text-white absolute transition-transform duration-300 ease-out group-hover:translate-x-6 group-hover:opacity-0" />
+      <ArrowRight className="w-4 h-4 text-cyan-400 absolute -translate-x-6 opacity-0 transition-transform duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100" />
+    </div>
+  </motion.a>
+</div>
         </div>
 
       </div>

@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
-import { 
-  ArrowRight, 
-  Lightbulb, 
-  Heart, 
-  Award, 
-  TrendingUp, 
-  Sparkles, 
-  CheckCircle2 
+import {
+  ArrowRight,
+  Lightbulb,
+  Heart,
+  Award,
+  TrendingUp,
+  Sparkles,
+  CheckCircle2
 } from 'lucide-react';
 import aboutImage from '../assets/ABOUT US.png';
 
@@ -16,7 +16,7 @@ const AnimatedCounter = ({ value, suffix = '' }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-40px' });
   const motionVal = useMotionValue(0);
-  
+
   const springVal = useSpring(motionVal, {
     damping: 30,
     stiffness: 100,
@@ -117,24 +117,24 @@ const About = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 25 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } 
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
     }
   };
 
   return (
     <section className="relative w-full py-20 bg-[#FBFDFF] text-[#1E293B] overflow-hidden font-sans">
-      
+
       {/* Background Subtle Gradient Blobs */}
       <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-purple-100/40 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header Badge & Title */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
@@ -144,9 +144,9 @@ const About = () => {
           <div className="section-label mb-4">
             <span className="section-label-text">ABOUT US</span>
           </div>
-          
-          <h1 className="text-3xl md:text-5xl font-extrabold text-[#0B132B] tracking-tight">
-            Turning Ideas Into Digital Solutions
+
+          <h1 className="text-3xl md:text-5xl font-bold text-[#0B132B] tracking-tight">
+            Turning Ideas Into<span className="bg-gradient-to-r from-[#2563EB] to-[#7C3AED] bg-clip-text text-transparent"> Digital Solutions</span>
           </h1>
           <p className="mt-4 text-sm md:text-base text-[#64748B] max-w-xl mx-auto leading-relaxed">
             We combine technology, creativity and innovation to build digital experiences that make a real difference.
@@ -155,9 +155,9 @@ const About = () => {
 
         {/* Middle Graphic & Content Section */}
         <div className="grid lg:grid-cols-12 gap-10 items-center mb-16 relative">
-          
+
           {/* Left Image Section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-40px" }}
@@ -166,7 +166,7 @@ const About = () => {
           >
             {/* Background glowing blob for the image */}
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-indigo-500/20 rounded-[2rem] blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none"></div>
-            
+
             {/* Animated Border Frame (Full Size) */}
             <div
               ref={imageCardRef}
@@ -181,9 +181,9 @@ const About = () => {
               <div className="about-image-viewport relative z-10 w-full h-full rounded-[1.8rem] overflow-hidden bg-white border-[6px] border-white">
                 <div className="about-image-reflection pointer-events-none absolute inset-0 z-10 opacity-0"></div>
                 <div className="about-image-sweep pointer-events-none absolute inset-y-0 -left-1/2 z-20 w-1/3 skew-x-[-18deg]"></div>
-                <img 
-                  src={aboutImage} 
-                  alt="About Us" 
+                <img
+                  src={aboutImage}
+                  alt="About Us"
                   className="about-image w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
@@ -191,7 +191,7 @@ const About = () => {
           </motion.div>
 
           {/* Right Text Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-40px" }}
@@ -212,16 +212,25 @@ const About = () => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 href="/about"
-                className="inline-flex items-center gap-3 px-7 py-3.5 bg-[#0B132B] text-white text-sm font-medium rounded-full hover:bg-slate-800 transition-all shadow-[0_10px_20px_-5px_rgba(11,19,43,0.3)]"
+                className="group relative inline-flex items-center gap-3.5 px-8 py-3.5 bg-[#0B132B] text-white text-sm font-semibold rounded-full overflow-hidden transition-all duration-300 shadow-[0_8px_25px_-4px_rgba(11,19,43,0.35)] hover:shadow-[0_12px_30px_-2px_rgba(99,102,241,0.35)] border border-white/10 hover:border-indigo-500/50 cursor-pointer"
               >
-                Learn More About Us <ArrowRight className="w-4 h-4" />
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 via-sky-500/20 to-indigo-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+
+                <span className="relative z-10 tracking-wide transition-colors duration-300 group-hover:text-white">
+                  Learn More About Us
+                </span>
+
+                <div className="relative z-10 w-4 h-4 overflow-hidden">
+                  <ArrowRight className="w-4 h-4 text-white absolute transition-transform duration-300 ease-out group-hover:translate-x-6 group-hover:opacity-0" />
+                  <ArrowRight className="w-4 h-4 text-cyan-400 absolute -translate-x-6 opacity-0 transition-transform duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100" />
+                </div>
               </motion.a>
             </div>
           </motion.div>
         </div>
 
         {/* 4 Feature Boxes */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -249,7 +258,7 @@ const About = () => {
         </motion.div>
 
         {/* Our Values Divider Strip */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -258,8 +267,8 @@ const About = () => {
         >
           <span className="font-bold text-sm text-[#0B132B]">Our Values</span>
           {values.map((v, i) => (
-            <motion.div 
-              key={i} 
+            <motion.div
+              key={i}
               whileHover={{ scale: 1.06 }}
               className="flex items-center gap-2 text-xs md:text-sm font-medium text-[#475569] cursor-default"
             >

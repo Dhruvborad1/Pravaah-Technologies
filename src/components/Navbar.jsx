@@ -15,10 +15,10 @@ const navLinks = [
   { name: 'Services', path: '/services', icon: Briefcase, desc: 'What We Deliver' },
   { name: 'Solutions', path: '/solutions', icon: Cpu, desc: 'Tech Architecture' },
   { name: 'Projects', path: '/projects', icon: Layers, desc: 'Case Studies' },
-  { name: 'Industries', path: '/industries', icon: Factory, desc: 'Domains We Serve' },
-  { name: 'Why Pravaah', path: '/why-pravaah', icon: Award, desc: 'Our Core Value' },
-  { name: 'Careers', path: '/careers', icon: Users, desc: 'Join Our Team', badge: 'Hiring' },
-  { name: 'Blog', path: '/blog', icon: BookOpen, desc: 'Insights & Updates' }
+  // { name: 'Industries', path: '/industries', icon: Factory, desc: 'Domains We Serve' },
+  // { name: 'Why Pravaah', path: '/why-pravaah', icon: Award, desc: 'Our Core Value' },
+  // { name: 'Careers', path: '/careers', icon: Users, desc: 'Join Our Team', badge: 'Hiring' },
+  // { name: 'Blog', path: '/blog', icon: BookOpen, desc: 'Insights & Updates' }
 ];
 
 const Navbar = () => {
