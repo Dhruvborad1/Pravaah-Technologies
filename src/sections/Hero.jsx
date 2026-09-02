@@ -44,10 +44,10 @@ const MainScreen = ({ isActive, onSelect }) => (
         <div className="flex items-center justify-between gap-3 pb-3 border-b border-white/10">
           <div className="flex items-center gap-2.5 min-w-0">
             <div className="w-8 h-8 rounded-lg bg-white/10 border border-white/15 p-1 flex items-center justify-center shrink-0 shadow-inner">
-              <img 
-                src={pravaahLogo} 
-                alt="Pravaah Technology" 
-                className="w-full h-full object-contain" 
+              <img
+                src={pravaahLogo}
+                alt="Pravaah Technology"
+                className="w-full h-full object-contain"
               />
             </div>
             <div className="min-w-0">
@@ -147,11 +147,10 @@ const HeroScreens = () => {
               key={tab.id}
               type="button"
               onClick={() => setActiveScreen(tab.id)}
-              className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all ${
-                activeScreen === tab.id
+              className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all ${activeScreen === tab.id
                   ? 'bg-blue-600 text-white shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
-              }`}
+                }`}
             >
               {tab.label}
             </button>
@@ -282,7 +281,7 @@ const Hero = () => (
     <div className="hero-light-grid absolute inset-0 pointer-events-none" />
     <div className="container relative z-10 mx-auto px-5 md:px-8">
       <div className="grid items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
-        
+
         <div className="hero-copy max-w-2xl text-center lg:text-left mx-auto lg:mx-0">
           <div className="hero-rise mb-6 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-blue-700 shadow-sm">
             <Sparkles className="h-4 w-4 text-cyan-500" /> Digital solutions for ambitious teams
@@ -298,11 +297,11 @@ const Hero = () => (
 
           {/* DUAL ARROW ANIMATED BUTTONS (ORIGINAL COLORS RETAINED) */}
           <div className="hero-rise hero-rise-delay-3 mt-9 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
-            
+
             {/* Primary Button */}
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
-              <Link 
-                to="/services" 
+              <Link
+                to="/services"
                 className="group relative pravaah-btn-primary inline-flex w-full sm:w-auto items-center justify-center gap-3 rounded-xl px-6 py-3.5 font-bold shadow-lg shadow-blue-200 overflow-hidden cursor-pointer"
               >
                 <span>Explore our services</span>
@@ -315,8 +314,8 @@ const Hero = () => (
 
             {/* Secondary Button */}
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-3 rounded-xl border border-slate-200 bg-white px-6 py-3.5 font-bold text-slate-700 shadow-sm overflow-hidden hover:border-blue-300 hover:text-blue-700 cursor-pointer"
               >
                 <span>Start a conversation</span>

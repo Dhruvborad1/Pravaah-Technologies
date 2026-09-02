@@ -6,27 +6,24 @@ import {
   Heart,
   Award,
   TrendingUp,
-  Sparkles,
-  CheckCircle2
+  ShieldCheck,
+  Layers,
+  Code2,
+  CheckCircle2,
+  Building2,
+  Sparkles
 } from 'lucide-react';
 import aboutImage from '../assets/ABOUT US.png';
 
-// સ્મૂથ કાઉન્ટ-અપ નંબર એનિમેશન કમ્પોનન્ટ
+// પ્રીસાઇઝ કાઉન્ટર એનિમેશન
 const AnimatedCounter = ({ value, suffix = '' }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-40px' });
   const motionVal = useMotionValue(0);
-
-  const springVal = useSpring(motionVal, {
-    damping: 30,
-    stiffness: 100,
-    duration: 2.5
-  });
+  const springVal = useSpring(motionVal, { damping: 30, stiffness: 100, duration: 2 });
 
   useEffect(() => {
-    if (isInView) {
-      motionVal.set(value);
-    }
+    if (isInView) motionVal.set(value);
   }, [isInView, value, motionVal]);
 
   useEffect(() => {
@@ -73,61 +70,53 @@ const About = () => {
   const cards = [
     {
       id: '01',
+      icon: <Code2 className="w-5 h-5 text-blue-600" />,
       title: 'Innovation First',
-      desc: 'We continuously explore better ideas, technologies and ways to solve problems.'
+      desc: 'We continuously explore better ideas, modern architectures, and emerging technologies to build high-performance products.'
     },
     {
       id: '02',
+      icon: <Building2 className="w-5 h-5 text-indigo-600" />,
       title: 'Client Focused',
-      desc: 'We build solutions around the goals, needs and expectations of our clients.'
+      desc: 'We build digital solutions engineered around the core business objectives, workflow needs, and ROI of our clients.'
     },
     {
       id: '03',
+      icon: <ShieldCheck className="w-5 h-5 text-blue-600" />,
       title: 'Quality Driven',
-      desc: 'We focus on clean design, reliable technology and high-quality execution.'
+      desc: 'We enforce rigorous testing, clean code principles, and reliable infrastructure to ensure enterprise-grade stability.'
     },
     {
       id: '04',
+      icon: <Layers className="w-5 h-5 text-indigo-600" />,
       title: 'Built for Growth',
-      desc: 'We create scalable digital solutions designed to grow with your business.'
+      desc: 'We build scalable cloud architecture designed to seamlessly adapt and grow alongside your growing enterprise.'
     }
   ];
 
-  const values = [
-    { icon: <Lightbulb className="w-4 h-4 text-[#4361EE]" />, label: 'Innovation' },
-    { icon: <Heart className="w-4 h-4 text-[#4361EE]" />, label: 'Integrity' },
-    { icon: <Award className="w-4 h-4 text-[#4361EE]" />, label: 'Quality' },
-    { icon: <TrendingUp className="w-4 h-4 text-[#4361EE]" />, label: 'Growth' },
+  const enterpriseHighlights = [
+    { title: 'End-to-End Delivery', desc: 'From architecture & UI/UX to cloud deployment.' },
+    { title: 'Modern Tech Stack', desc: 'React, Node, scalable APIs, and robust databases.' },
+    { title: 'Secure & Compliant', desc: 'Built with industry-standard data & security protocols.' }
   ];
 
   const stats = [
-    { value: 50, suffix: '+', label: 'Projects Delivered', color: 'from-blue-600 to-cyan-500' },
-    { value: 25, suffix: '+', label: 'Happy Clients', color: 'from-indigo-600 to-blue-500' },
-    { value: 10, suffix: '+', label: 'Digital Solutions', color: 'from-purple-600 to-indigo-500' },
-    { value: 99, suffix: '%', label: 'Client Satisfaction', color: 'from-pink-600 to-rose-500' },
+    { value: 50, suffix: '+', label: 'Projects Delivered', desc: 'Successfully deployed across industries' },
+    { value: 25, suffix: '+', label: 'Happy Clients', desc: 'Long-term enterprise partnerships' },
+    { value: 10, suffix: '+', label: 'Digital Solutions', desc: 'Proprietary & customized platforms' },
+    { value: 99, suffix: '%', label: 'Client Satisfaction', desc: 'Consistent delivery & SLA adherence' },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-    }
-  };
+  const values = [
+    { label: 'Innovation', tagline: 'Future-Ready Tech', icon: <Lightbulb className="w-4 h-4 text-blue-600" /> },
+    { label: 'Integrity', tagline: 'Uncompromised Trust', icon: <Heart className="w-4 h-4 text-rose-500" /> },
+    { label: 'Quality', tagline: 'Zero Defect Delivery', icon: <Award className="w-4 h-4 text-amber-500" /> },
+    { label: 'Scalability', tagline: 'Enterprise Growth', icon: <TrendingUp className="w-4 h-4 text-emerald-500" /> },
+    { label: 'Security', tagline: 'Bank-Grade Compliance', icon: <ShieldCheck className="w-4 h-4 text-indigo-600" /> }
+  ];
 
   return (
-    <section className="relative w-full py-20 bg-[#FBFDFF] text-[#1E293B] overflow-hidden font-sans">
-
-      {/* Background Subtle Gradient Blobs */}
+    <section className="relative w-full pt-20 pb-12 bg-[#FBFDFF] text-[#1E293B] overflow-hidden font-sans">
       <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-purple-100/40 rounded-full blur-[140px] pointer-events-none" />
 
@@ -153,10 +142,8 @@ const About = () => {
           </p>
         </motion.div>
 
-        {/* Middle Graphic & Content Section */}
+        {/* Middle Graphic & Executive Narrative Section */}
         <div className="grid lg:grid-cols-12 gap-10 items-center mb-16 relative">
-
-          {/* Left Image Section */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -164,23 +151,19 @@ const About = () => {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="lg:col-span-6 relative flex items-center justify-center group p-2 sm:p-4"
           >
-            {/* Background glowing blob for the image */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-indigo-500/20 rounded-[2rem] blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-indigo-500/20 rounded-[2rem] blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none" />
 
-            {/* Animated Border Frame (Full Size) */}
             <div
               ref={imageCardRef}
               onPointerMove={handleImagePointerMove}
               onPointerLeave={resetImagePointer}
               className="about-image-card relative w-full mx-auto rounded-[2rem] shadow-[0_15px_40px_rgba(0,0,0,0.08)] p-[4px] overflow-hidden bg-[#E2E8F0] transition-transform duration-300"
             >
-              {/* Rotating Gradient Animation */}
-              <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_180deg,#3B82F6_240deg,#6366F1_300deg,#8B5CF6_360deg)]"></div>
+              <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_180deg,#3B82F6_240deg,#6366F1_300deg,#8B5CF6_360deg)]" />
 
-              {/* Inner White Border and Image */}
               <div className="about-image-viewport relative z-10 w-full h-full rounded-[1.8rem] overflow-hidden bg-white border-[6px] border-white">
-                <div className="about-image-reflection pointer-events-none absolute inset-0 z-10 opacity-0"></div>
-                <div className="about-image-sweep pointer-events-none absolute inset-y-0 -left-1/2 z-20 w-1/3 skew-x-[-18deg]"></div>
+                <div className="about-image-reflection pointer-events-none absolute inset-0 z-10 opacity-0" />
+                <div className="about-image-sweep pointer-events-none absolute inset-y-0 -left-1/2 z-20 w-1/3 skew-x-[-18deg]" />
                 <img
                   src={aboutImage}
                   alt="About Us"
@@ -190,7 +173,6 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Right Text Content */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -198,15 +180,30 @@ const About = () => {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="lg:col-span-6 space-y-6"
           >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-bold uppercase tracking-wider">
+              <span>COMPANY OVERVIEW</span>
+            </div>
+
             <h2 className="text-2xl md:text-3xl font-bold text-[#0B132B]">
-              Who We Are
+              Delivering reliable software and transformative digital strategies.
             </h2>
+
             <p className="text-[#475569] text-sm md:text-base leading-relaxed">
               Pravaah Technologies is a technology and digital solutions company focused on helping businesses transform their ideas into modern, scalable and meaningful digital experiences. From websites and applications to UI/UX, software solutions, AI and automation, we combine creativity with technology to deliver solutions built around real business needs.
             </p>
-            <p className="text-[#475569] text-sm md:text-base leading-relaxed">
-              Our approach is simple — understand the problem, create the right strategy, build with modern technology and deliver a solution that creates long-term value.
-            </p>
+
+            <div className="grid sm:grid-cols-3 gap-4 pt-2 border-y border-slate-200/80 py-4">
+              {enterpriseHighlights.map((item, idx) => (
+                <div key={idx} className="space-y-1">
+                  <h4 className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                    <span>{item.title}</span>
+                  </h4>
+                  <p className="text-[11px] text-slate-500 leading-normal">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
             <div className="pt-2">
               <motion.a
                 whileHover={{ scale: 1.03 }}
@@ -215,11 +212,9 @@ const About = () => {
                 className="group relative inline-flex items-center gap-3.5 px-8 py-3.5 bg-[#0B132B] text-white text-sm font-semibold rounded-full overflow-hidden transition-all duration-300 shadow-[0_8px_25px_-4px_rgba(11,19,43,0.35)] hover:shadow-[0_12px_30px_-2px_rgba(99,102,241,0.35)] border border-white/10 hover:border-indigo-500/50 cursor-pointer"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 via-sky-500/20 to-indigo-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
-
                 <span className="relative z-10 tracking-wide transition-colors duration-300 group-hover:text-white">
                   Learn More About Us
                 </span>
-
                 <div className="relative z-10 w-4 h-4 overflow-hidden">
                   <ArrowRight className="w-4 h-4 text-white absolute transition-transform duration-300 ease-out group-hover:translate-x-6 group-hover:opacity-0" />
                   <ArrowRight className="w-4 h-4 text-cyan-400 absolute -translate-x-6 opacity-0 transition-transform duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100" />
@@ -229,89 +224,154 @@ const About = () => {
           </motion.div>
         </div>
 
-        {/* 4 Feature Boxes */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12"
-        >
+        {/* 4 Professional Pillar Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {cards.map((item) => (
-            <motion.div
+            <div
               key={item.id}
-              variants={itemVariants}
-              whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              className="bg-white/90 backdrop-blur-sm p-7 rounded-2xl border border-[#E2E8F0] shadow-[0_10px_30px_-15px_rgba(0,0,0,0.04)] hover:shadow-xl transition-shadow cursor-default"
+              className="bg-white rounded-xl p-7 border border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] hover:border-blue-300 transition-all duration-300 flex flex-col justify-between"
             >
-              <span className="text-2xl font-bold text-[#94A3B8] block mb-3 font-mono">
-                {item.id}
-              </span>
-              <h3 className="text-base font-bold text-[#0B132B] mb-2">
-                {item.title}
-              </h3>
-              <p className="text-xs md:text-sm text-[#64748B] leading-relaxed">
-                {item.desc}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
+              <div>
+                <div className="flex items-center justify-between mb-5">
+                  <div className="p-2.5 rounded-lg bg-blue-50 border border-blue-100">
+                    {item.icon}
+                  </div>
+                  <span className="text-xs font-bold font-mono text-slate-400">
+                    PHASE {item.id}
+                  </span>
+                </div>
 
-        {/* Our Values Divider Strip */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 py-6 border-b border-slate-200/80 mb-12"
-        >
-          <span className="font-bold text-sm text-[#0B132B]">Our Values</span>
-          {values.map((v, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.06 }}
-              className="flex items-center gap-2 text-xs md:text-sm font-medium text-[#475569] cursor-default"
-            >
-              {v.icon}
-              <span>{v.label}</span>
-            </motion.div>
+                <h3 className="text-base font-bold text-slate-900 mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Highlighted Numbers / Animated Counter Stats Section */}
-        <div className="relative py-8 px-6 rounded-3xl bg-gradient-to-b from-white/80 to-slate-50/80 border border-slate-200/80 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.03)]">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 relative z-10">
+        {/* Enterprise Stats Bar */}
+        <div className="bg-slate-50/70 backdrop-blur-sm rounded-2xl border border-slate-200/90 p-3.5 sm:p-6 mb-14 shadow-sm">
+          {/* મોબાઇલમાં 2x2 (grid-cols-2) અને ડેસ્કટોપમાં 4 (lg:grid-cols-4) */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {stats.map((stat, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="group relative p-5 rounded-2xl bg-white/70 border border-slate-100 hover:border-slate-300 shadow-sm hover:shadow-lg transition-all duration-300 text-center cursor-default"
+                className="group relative bg-white rounded-xl p-3.5 sm:p-5 border border-slate-200/70 hover:border-blue-300 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
               >
-                {/* Glowing Animated Counter Number */}
-                <div className={`text-4xl sm:text-5xl lg:text-6xl font-black font-mono tracking-tight bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2 inline-block`}>
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                {/* હોવર એક્સેન્ટ લાઇન */}
+                <div className="absolute left-0 top-3 bottom-3 w-1 bg-gradient-to-b from-blue-600 to-indigo-600 rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <div>
+                  {/* કાઉન્ટર નંબર */}
+                  <div className="text-2xl sm:text-4xl font-extrabold font-mono tracking-tight text-[#0B132B] group-hover:text-blue-600 transition-colors mb-1 sm:mb-2">
+                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                  </div>
+
+                  {/* ટાઇટલ લેબલ */}
+                  <div className="text-xs sm:text-sm font-bold text-slate-800 mb-0.5 sm:mb-1 leading-tight">
+                    {stat.label}
+                  </div>
+
+                  {/* ડિસ્ક્રિપ્શન */}
+                  <div className="text-[10px] sm:text-xs text-slate-500 leading-relaxed line-clamp-2 sm:line-clamp-none">
+                    {stat.desc}
+                  </div>
                 </div>
 
-                {/* Status Indicator Dot & Label */}
-                <div className="flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-600 group-hover:text-slate-900 transition-colors">
-                  <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-blue-500 group-hover:scale-125 transition-all" />
-                  <span>{stat.label}</span>
+                {/* બોટમ ઇન્ડિકેટર */}
+                <div className="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] sm:text-[11px] font-medium text-slate-400">
+                  <span>Target Metric</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-emerald-500 transition-colors" />
                 </div>
-
-                {/* Bottom Progress Animated Underline */}
-                <div className="mt-3 mx-auto w-8 h-1 bg-slate-200 rounded-full overflow-hidden">
-                  <div className={`h-full w-full bg-gradient-to-r ${stat.color} transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out`} />
-                </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
 
       </div>
+
+      {/* ------------------------------------------------------------- */}
+      {/* FULL-WIDTH CORPORATE VALUES MARQUEE WITH FRONT BADGE           */}
+      {/* ------------------------------------------------------------- */}
+      <div className="relative w-full border-y border-slate-200/90 bg-gradient-to-r from-slate-50/95 via-white to-slate-50/95 backdrop-blur-xl py-3.5 sm:py-3 overflow-hidden group select-none shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(0,0,0,0.03)]">
+
+        {/* બેકગ્રાઉન્ડ એમ્બિયન્ટ લાઇટિંગ */}
+        <div className="absolute top-0 left-1/3 w-72 h-full bg-blue-400/5 blur-xl pointer-events-none" />
+
+        {/* મેઈન કન્ટેનર: મોબાઈલમાં ફ્લેક્સ-કોલમ (ઉપર લેબલ), ડેસ્કટોપ પર રો (ડાબી બાજુ લેબલ) */}
+        <div className="w-full flex flex-col sm:flex-row items-center gap-3 sm:gap-0">
+
+          {/* CORPORATE VALUES LABEL: મોબાઈલમાં સેન્ટર્ડ-ઉપર, ડેસ્કટોપમાં લેફ્ટ-ફિક્સ */}
+          <div className="relative z-30 shrink-0 w-full sm:w-auto flex items-center justify-center sm:justify-start px-4 sm:pl-8 sm:pr-6">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 sm:py-2 rounded-xl bg-[#0B132B] text-white shadow-[0_4px_14px_rgba(11,19,43,0.18)] border border-slate-750/70 transition-transform duration-300">
+
+              {/* લાઇવ પલ્સ ઇન્ડિકેટર */}
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+              </span>
+
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.16em] text-slate-100 font-mono whitespace-nowrap">
+                Corporate Values
+              </span>
+            </div>
+
+            {/* ડેસ્કટોપ ડિવાઇડર લાઇન */}
+            <div className="hidden sm:block h-7 w-px bg-gradient-to-b from-transparent via-slate-300 to-transparent ml-5" />
+          </div>
+
+          {/* MARQUEE ટ્રેક એરિયા */}
+          <div className="relative w-full flex-1 overflow-hidden">
+
+            {/* સાઇડ સોફ્ટ ફેડ માસ્ક (મોબાઈલ અને ડેસ્કટોપ માટે એડજસ્ટેડ) */}
+            <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 sm:w-20 bg-gradient-to-r from-[#FBFDFF] via-[#FBFDFF]/80 to-transparent z-10" />
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-[#FBFDFF] via-[#FBFDFF]/80 to-transparent z-10" />
+
+            {/* એનિમેટેડ ટ્રેક */}
+            <div className="flex items-center overflow-hidden">
+              <div className="flex shrink-0 items-center gap-3.5 sm:gap-5 animate-[marquee_25s_linear_infinite] group-hover:[animation-play-state:paused] py-1">
+                {[...values, ...values, ...values].map((v, i) => (
+                  <div
+                    key={i}
+                    className="group/item flex items-center gap-2.5 sm:gap-3 pl-2 pr-3.5 sm:pr-4 py-1.5 rounded-full bg-white/90 border border-slate-200/90 shadow-[0_2px_6px_rgba(0,0,0,0.02)] hover:border-blue-400/80 hover:shadow-[0_4px_16px_rgba(37,99,235,0.12)] transition-all duration-300 cursor-pointer"
+                  >
+                    {/* સોફ્ટ આઇકોન બેજ */}
+                    <div className="flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-slate-100/90 border border-slate-200/60 group-hover/item:bg-blue-600 transition-all duration-300">
+                      <span className="group-hover/item:brightness-0 group-hover/item:invert transition-all duration-300 flex items-center justify-center scale-90 sm:scale-100">
+                        {v.icon}
+                      </span>
+                    </div>
+
+                    {/* ટેક્સ્ટ માહિતી */}
+                    <div className="flex items-center gap-1.5 sm:gap-2 whitespace-nowrap">
+                      <span className="text-xs sm:text-sm font-bold text-slate-800 tracking-tight group-hover/item:text-blue-600 transition-colors">
+                        {v.label}
+                      </span>
+                      <span className="w-1 h-1 rounded-full bg-slate-300 group-hover/item:bg-blue-400" />
+                      <span className="text-[10px] sm:text-xs text-slate-500 font-medium">
+                        {v.tagline}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      {/* Marquee CSS Keyframes */}
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-33.333%); }
+        }
+      `}</style>
     </section>
   );
 };
