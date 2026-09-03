@@ -2,6 +2,30 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
+// Animation Variants (Snappy & Fast on Scroll)
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08, // દરેક કાર્ડ વચ્ચે માત્ર 80ms નો ગેપ
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.38,
+      ease: [0.25, 1, 0.5, 1], // fast out, smooth stop
+    },
+  },
+};
+
 // Custom Tech Icons
 const CodeWindowIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-cyan-400 stroke-[1.8]" stroke="currentColor">
@@ -181,14 +205,12 @@ const ServicesAndSolutions = () => {
 
       <div className="max-w-6xl mx-auto relative z-10">
 
-        {/* ========================================================= */}
-        {/* HEADER & LABEL (UNCHANGED AS REQUESTED) */}
-        {/* ========================================================= */}
+        {/* HEADER SECTION */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <div className="section-label mb-4">
@@ -196,7 +218,7 @@ const ServicesAndSolutions = () => {
           </div>
 
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight leading-tight">
-            Services &amp; Solutions For the  <span className="bg-gradient-to-r from-[#2563EB] to-[#7C3AED] bg-clip-text text-transparent">Digital Future</span>
+            Services &amp; Solutions For the <span className="bg-gradient-to-r from-[#2563EB] to-[#7C3AED] bg-clip-text text-transparent">Digital Future</span>
           </h2>
 
           <p className="text-slate-400 text-sm sm:text-[15px] leading-relaxed max-w-xl mx-auto">
@@ -204,26 +226,24 @@ const ServicesAndSolutions = () => {
           </p>
         </motion.div>
 
-        {/* ========================================================= */}
-        {/* PRAVAAH INTERACTIVE CARDS GRID */}
-        {/* ========================================================= */}
+        {/* INTERACTIVE CARDS GRID */}
         <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
 
-          {/* Central Glowing Divider */}
+          {/* Central Divider */}
           <div className="hidden lg:block absolute left-1/2 top-4 bottom-4 w-[1px] -translate-x-1/2 z-10 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-800 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400 to-purple-500 opacity-75 blur-[0.5px] animate-vertical-beam" />
           </div>
 
           {/* Left Column: OUR SERVICES */}
-          <motion.div
-            initial={{ opacity: 0, x: -25 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col gap-4"
-          >
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800/80 px-2 mb-2">
+          <div className="flex flex-col gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.35 }}
+              className="flex items-center justify-between pb-3 border-b border-slate-800/80 px-2 mb-2"
+            >
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee]" />
                 <h3 className="text-xl font-bold tracking-tight text-white">
@@ -233,31 +253,33 @@ const ServicesAndSolutions = () => {
               <span className="text-[11px] font-mono text-cyan-400/90 bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-500/20">
                 Design & Engineering
               </span>
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Staggered Cards Grid */}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            >
               {services.map((card, idx) => {
                 const Icon = card.icon;
                 return (
                   <motion.div
                     key={idx}
-                    whileHover={{ y: -6, scale: 1.01 }}
-                    transition={{ duration: 0.25 }}
+                    variants={cardVariants}
+                    whileHover={{ y: -5, scale: 1.01 }}
+                    transition={{ duration: 0.2 }}
                     className="group relative rounded-2xl p-[1px] overflow-hidden transition-all duration-300 min-h-[225px]"
                   >
-                    {/* Rotating Border Stream on Hover */}
                     <div className="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#06b6d4_360deg)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 border-spin" />
 
-                    {/* Card Inner Body */}
                     <div className="relative w-full h-full bg-[#090f22]/95 backdrop-blur-xl rounded-[15px] p-5 flex flex-col justify-between overflow-hidden border border-slate-800/90 group-hover:border-cyan-500/20">
-
-                      {/* Flowing Water Mesh Gradient Background */}
                       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.04] via-blue-600/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pravaah-water-bg pointer-events-none" />
 
-                      {/* Card Content Top */}
                       <div className="relative z-10">
                         <div className="flex items-center justify-between mb-3.5">
-                          {/* Pulsing Fluid Icon Container */}
                           <div className="relative">
                             <span className="absolute inset-0 rounded-xl bg-cyan-500/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             <div className="relative w-10 h-10 rounded-xl bg-[#101735] border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:border-cyan-400 transition-all duration-300">
@@ -265,7 +287,6 @@ const ServicesAndSolutions = () => {
                             </div>
                           </div>
 
-                          {/* Index Number & Tag */}
                           <div className="flex items-center gap-1.5">
                             <span className="text-[10px] font-mono text-cyan-400/80 font-bold tracking-wider">
                               {card.num}
@@ -285,7 +306,6 @@ const ServicesAndSolutions = () => {
                         </p>
                       </div>
 
-                      {/* Fluid Wave Line & Link Indicator */}
                       <div className="relative z-10 flex items-center justify-between pt-3 mt-3 border-t border-slate-800/60 text-slate-400 group-hover:text-cyan-300 text-[11px] font-medium transition-colors">
                         <div className="flex items-center gap-1.5">
                           <span className="w-1.5 h-1.5 rounded-full bg-slate-600 group-hover:bg-cyan-400 group-hover:animate-ping" />
@@ -293,23 +313,22 @@ const ServicesAndSolutions = () => {
                         </div>
                         <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1.5" />
                       </div>
-
                     </div>
                   </motion.div>
                 );
               })}
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
           {/* Right Column: OUR SOLUTIONS */}
-          <motion.div
-            initial={{ opacity: 0, x: 25 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col gap-4"
-          >
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800/80 px-2 mb-2">
+          <div className="flex flex-col gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.35 }}
+              className="flex items-center justify-between pb-3 border-b border-slate-800/80 px-2 mb-2"
+            >
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-purple-400 shadow-[0_0_10px_#c084fc]" />
                 <h3 className="text-xl font-bold tracking-tight text-white">
@@ -319,31 +338,33 @@ const ServicesAndSolutions = () => {
               <span className="text-[11px] font-mono text-purple-400/90 bg-purple-950/60 px-3 py-1 rounded-full border border-purple-500/20">
                 Enterprise & Systems
               </span>
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Staggered Cards Grid */}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            >
               {solutions.map((card, idx) => {
                 const Icon = card.icon;
                 return (
                   <motion.div
                     key={idx}
-                    whileHover={{ y: -6, scale: 1.01 }}
-                    transition={{ duration: 0.25 }}
+                    variants={cardVariants}
+                    whileHover={{ y: -5, scale: 1.01 }}
+                    transition={{ duration: 0.2 }}
                     className="group relative rounded-2xl p-[1px] overflow-hidden transition-all duration-300 min-h-[225px]"
                   >
-                    {/* Rotating Border Stream on Hover */}
                     <div className="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#c084fc_360deg)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 border-spin" />
 
-                    {/* Card Inner Body */}
                     <div className="relative w-full h-full bg-[#0d0f26]/95 backdrop-blur-xl rounded-[15px] p-5 flex flex-col justify-between overflow-hidden border border-slate-800/90 group-hover:border-purple-500/20">
-
-                      {/* Flowing Gradient Background */}
                       <div className="absolute inset-0 bg-gradient-to-br from-purple-500/[0.04] via-indigo-600/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pravaah-water-bg pointer-events-none" />
 
-                      {/* Card Content Top */}
                       <div className="relative z-10">
                         <div className="flex items-center justify-between mb-3.5">
-                          {/* Pulsing Fluid Icon Container */}
                           <div className="relative">
                             <span className="absolute inset-0 rounded-xl bg-purple-500/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             <div className="relative w-10 h-10 rounded-xl bg-[#171435] border border-purple-500/30 flex items-center justify-center text-purple-400 group-hover:scale-110 group-hover:border-purple-400 transition-all duration-300">
@@ -351,7 +372,6 @@ const ServicesAndSolutions = () => {
                             </div>
                           </div>
 
-                          {/* Index Number & Tag */}
                           <div className="flex items-center gap-1.5">
                             <span className="text-[10px] font-mono text-purple-400/80 font-bold tracking-wider">
                               {card.num}
@@ -371,7 +391,6 @@ const ServicesAndSolutions = () => {
                         </p>
                       </div>
 
-                      {/* Fluid Wave Line & Link Indicator */}
                       <div className="relative z-10 flex items-center justify-between pt-3 mt-3 border-t border-slate-800/60 text-slate-400 group-hover:text-purple-300 text-[11px] font-medium transition-colors">
                         <div className="flex items-center gap-1.5">
                           <span className="w-1.5 h-1.5 rounded-full bg-slate-600 group-hover:bg-purple-400 group-hover:animate-ping" />
@@ -379,29 +398,28 @@ const ServicesAndSolutions = () => {
                         </div>
                         <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1.5" />
                       </div>
-
                     </div>
                   </motion.div>
                 );
               })}
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
         </div>
 
-        {/* Horizontal Stream Beam Divider */}
+        {/* Horizontal Stream Divider */}
         <div className="relative w-full h-px mt-16 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400 to-purple-500 opacity-75 blur-[1px] animate-beam-flow" />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-90 animate-beam-flow" />
         </div>
 
-        {/* Modern Bottom CTA Bar */}
+        {/* Bottom CTA Bar */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-30px" }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
           className="pt-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
         >
           <div>
@@ -413,22 +431,18 @@ const ServicesAndSolutions = () => {
             </p>
           </div>
 
-          {/* Unified Dual Arrow Button */}
           <motion.a
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             href="#contact"
             className="group relative inline-flex items-center gap-3.5 px-8 py-3.5 bg-white text-black text-sm font-semibold rounded-full overflow-hidden transition-all duration-300 shadow-[0_8px_25px_-4px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_30px_-2px_rgba(99,102,241,0.35)] border border-slate-200 hover:border-indigo-500/50 cursor-pointer shrink-0"
           >
-            {/* Background Hover Glow */}
             <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/10 via-sky-500/10 to-indigo-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
 
-            {/* Button Text */}
             <span className="relative z-10 tracking-wide transition-colors duration-300 group-hover:text-slate-900 whitespace-nowrap">
               Start Your Project
             </span>
 
-            {/* Dual Arrow Swipe Animation (Black to Indigo) */}
             <div className="relative z-10 w-4 h-4 overflow-hidden">
               <ArrowRight className="w-4 h-4 text-black absolute transition-transform duration-300 ease-out group-hover:translate-x-6 group-hover:opacity-0" />
               <ArrowRight className="w-4 h-4 text-indigo-600 absolute -translate-x-6 opacity-0 transition-transform duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100" />

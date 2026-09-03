@@ -1,171 +1,84 @@
 import React from 'react';
-import { ArrowRight, Code, Smartphone, Cloud, Palette, ChartColumn, Shield, Database, Zap, Headphones, Monitor, Settings, Rocket } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Check, Sparkles, Clock, Zap, ShieldCheck } from 'lucide-react';
 
-const ServicesPage = () => {
+import ServiceHeroImg from '../assets/Service 24_7-amico.png';
+
+const ServicesHeroSection = () => {
   return (
-    <>
-      <section className="section-padding bg-primary text-primary-foreground py-28">
-        <div className="container mx-auto text-center">
-          <span className="inline-block px-4 py-1.5 bg-primary-foreground/10 border border-primary-foreground/20 rounded-full text-sm font-medium mb-6">Our Services</span>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mt-2">
-            <span className="inline-flex items-center justify-center text-center flex-wrap [perspective:500px]">
-              <span className="text-reveal-span inline-block whitespace-normal">Comprehensive </span>
-              <span className="text-reveal-span inline-block whitespace-normal">IT </span>
-              <span className="text-reveal-span inline-block whitespace-normal">Solutions</span>
-            </span>
-          </h1>
-          <p className="mt-6 max-w-2xl mx-auto text-lg text-primary-foreground/80 leading-relaxed">
-            End-to-end IT solutions designed to accelerate your business growth and digital transformation. We combine innovation with expertise to deliver results that matter.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link className="inline-flex items-center gap-2 px-8 py-4 bg-primary-foreground text-primary rounded-xl font-semibold hover:opacity-90 transition-opacity" to="/contact">
-              Get Started <ArrowRight className="w-[18px] h-[18px]" />
-            </Link>
-            <Link className="inline-flex items-center gap-2 px-8 py-4 border-2 border-primary-foreground/30 text-primary-foreground rounded-xl font-semibold hover:bg-primary-foreground/10 transition-colors" to="/projects">
-              View Our Work
-            </Link>
-          </div>
-        </div>
-      </section>
+    <section className="hero-light relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24">
+      {/* Background Mesh Grid */}
+      <div className="hero-light-grid absolute inset-0 pointer-events-none" />
 
-      <section className="section-padding bg-primary-soft py-24">
-        <div className="container mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-primary font-semibold text-sm uppercase tracking-wider">What We Do</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">Our Core Services</h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed">From concept to deployment, we provide a full spectrum of IT services to help your business thrive in the digital landscape.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="glass-card p-8 h-full hover:shadow-xl transition-all duration-500 group hover:-translate-y-1 flex flex-col">
-              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"><Code className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" /></div>
-              <h3 className="font-display text-xl font-bold text-foreground">Web Development</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed flex-grow">Custom web applications, e-commerce platforms, and enterprise solutions built with React, Node.js, and modern frameworks.</p>
-            </div>
-            <div className="glass-card p-8 h-full hover:shadow-xl transition-all duration-500 group hover:-translate-y-1 flex flex-col">
-              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"><Smartphone className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" /></div>
-              <h3 className="font-display text-xl font-bold text-foreground">Mobile App Development</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed flex-grow">Native and cross-platform mobile apps for iOS and Android that deliver exceptional user experiences.</p>
-            </div>
-            <div className="glass-card p-8 h-full hover:shadow-xl transition-all duration-500 group hover:-translate-y-1 flex flex-col">
-              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"><Cloud className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" /></div>
-              <h3 className="font-display text-xl font-bold text-foreground">Cloud Solutions</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed flex-grow">Scalable cloud infrastructure, migration services, and DevOps solutions on AWS, Azure, and Google Cloud.</p>
-            </div>
-            <div className="glass-card p-8 h-full hover:shadow-xl transition-all duration-500 group hover:-translate-y-1 flex flex-col">
-              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"><Palette className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" /></div>
-              <h3 className="font-display text-xl font-bold text-foreground">UI/UX Design</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed flex-grow">User-centered design that combines aesthetics with functionality to create memorable digital experiences.</p>
-            </div>
-            <div className="glass-card p-8 h-full hover:shadow-xl transition-all duration-500 group hover:-translate-y-1 flex flex-col">
-              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"><ChartColumn className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" /></div>
-              <h3 className="font-display text-xl font-bold text-foreground">Digital Marketing</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed flex-grow">Data-driven digital marketing strategies that increase visibility, engagement, and conversions.</p>
-            </div>
-            <div className="glass-card p-8 h-full hover:shadow-xl transition-all duration-500 group hover:-translate-y-1 flex flex-col">
-              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"><Shield className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" /></div>
-              <h3 className="font-display text-xl font-bold text-foreground">Cybersecurity</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed flex-grow">Comprehensive security solutions to protect your business from digital threats and ensure compliance.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Atmospheric Ambient Glow */}
+      <div 
+        className="hero-screen-glow absolute left-1/3 top-1/4 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60 pointer-events-none" 
+        aria-hidden="true" 
+      />
 
-      <section className="section-padding py-24">
-        <div className="container mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-primary font-semibold text-sm uppercase tracking-wider">Why Choose Us</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">Our Awesome Features</h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed">We deliver more than just code. Our solutions come packed with features that set us apart and ensure your success in the digital world.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-card rounded-2xl p-8 border border-border shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
-              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6"><Monitor className="w-7 h-7 text-primary" /></div>
-              <h3 className="font-display text-xl font-semibold text-foreground">Easy To Use</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed flex-grow">Our solutions are designed with simplicity in mind. Intuitive interfaces ensure your team can get started quickly without extensive training or onboarding.</p>
-            </div>
-            <div className="bg-card rounded-2xl p-8 border border-border shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
-              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6"><Palette className="w-7 h-7 text-primary" /></div>
-              <h3 className="font-display text-xl font-semibold text-foreground">Awesome Design</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed flex-grow">We craft visually stunning designs that captivate users and strengthen your brand identity. Every pixel is placed with purpose and precision.</p>
-            </div>
-            <div className="bg-card rounded-2xl p-8 border border-border shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
-              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6"><Settings className="w-7 h-7 text-primary" /></div>
-              <h3 className="font-display text-xl font-semibold text-foreground">Easy To Customize</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed flex-grow">Flexible and modular architecture allows you to tailor every aspect of your solution to match your unique business requirements and workflows.</p>
-            </div>
-            <div className="bg-card rounded-2xl p-8 border border-border shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
-              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6"><Headphones className="w-7 h-7 text-primary" /></div>
-              <h3 className="font-display text-xl font-semibold text-foreground">Any Time Support</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed flex-grow">Our dedicated support team is available 24/7 to assist you. Whether it's a quick question or a complex issue, we're always here to help.</p>
-            </div>
-            <div className="bg-card rounded-2xl p-8 border border-border shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
-              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6"><Rocket className="w-7 h-7 text-primary" /></div>
-              <h3 className="font-display text-xl font-semibold text-foreground">Fast Performance</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed flex-grow">Lightning-fast load times and optimized performance ensure your users never have to wait. Speed is at the core of everything we build.</p>
-            </div>
-            <div className="bg-card rounded-2xl p-8 border border-border shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
-              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6"><Shield className="w-7 h-7 text-primary" /></div>
-              <h3 className="font-display text-xl font-semibold text-foreground">Secure & Reliable</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed flex-grow">Enterprise-grade security protocols and 99.9% uptime guarantee keep your data safe and your business running without interruption.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="container relative z-10 mx-auto px-5 md:px-8">
+        {/* items-start ensures all pages start copy from the exact vertical top line */}
+        <div className="grid items-start gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
 
-      <section className="section-padding bg-primary-soft py-24">
-        <div className="container mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-primary font-semibold text-sm uppercase tracking-wider">How We Work</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">Our Process</h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed">A proven methodology that ensures every project is delivered on time, within budget, and beyond expectations.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="relative text-center">
-              <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"><span className="text-primary-foreground font-display text-2xl font-bold">01</span></div>
-              <div className="hidden lg:block absolute top-10 left-[60%] w-[80%] h-0.5 bg-primary/20"></div>
-              <h3 className="font-display text-lg font-bold text-foreground">Discovery & Planning</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed">We begin by understanding your business goals, target audience, and project requirements through detailed consultations and research.</p>
+          {/* LEFT COLUMN: HERO COPY (Same baseline as Home & About) */}
+          <div className="hero-copy max-w-2xl text-center lg:text-left mx-auto lg:mx-0">
+            {/* Pill Badge - Fixed height & exact margins */}
+            <div className="hero-rise mb-6 inline-flex h-9 items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-4 text-xs font-bold uppercase tracking-[0.16em] text-blue-700 shadow-sm backdrop-blur-sm">
+              <Sparkles className="h-4 w-4 text-cyan-500" /> Comprehensive IT Solutions
             </div>
-            <div className="relative text-center">
-              <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"><span className="text-primary-foreground font-display text-2xl font-bold">02</span></div>
-              <div className="hidden lg:block absolute top-10 left-[60%] w-[80%] h-0.5 bg-primary/20"></div>
-              <h3 className="font-display text-lg font-bold text-foreground">Design & Prototype</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed">Our design team creates wireframes and interactive prototypes, ensuring the user experience is intuitive and aligned with your brand.</p>
-            </div>
-            <div className="relative text-center">
-              <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"><span className="text-primary-foreground font-display text-2xl font-bold">03</span></div>
-              <div className="hidden lg:block absolute top-10 left-[60%] w-[80%] h-0.5 bg-primary/20"></div>
-              <h3 className="font-display text-lg font-bold text-foreground">Development & Testing</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed">Our engineers build your solution using the latest technologies, with rigorous testing at every stage to ensure quality and reliability.</p>
-            </div>
-            <div className="relative text-center">
-              <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"><span className="text-primary-foreground font-display text-2xl font-bold">04</span></div>
-              <h3 className="font-display text-lg font-bold text-foreground">Launch & Support</h3>
-              <p className="text-muted-foreground text-sm mt-3 leading-relaxed">We deploy your project with zero downtime and provide ongoing maintenance, updates, and support to keep everything running smoothly.</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="section-padding py-24">
-        <div className="container mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-primary font-semibold text-sm uppercase tracking-wider">Tech Stack</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mt-2">Technologies We Use</h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed">We leverage the latest and most reliable technologies to build robust, scalable, and future-proof solutions for our clients.</p>
+            {/* Main Title Heading */}
+            <h1 className="hero-rise hero-rise-delay-1 font-display text-4xl font-bold leading-[1.08] tracking-tight text-slate-950 sm:text-5xl md:text-6xl lg:text-7xl">
+              High-impact services that drive your digital <span className="pravaah-gradient-text">growth.</span>
+            </h1>
+
+            {/* Description Subtext */}
+            <p className="hero-rise hero-rise-delay-2 mt-6 max-w-xl mx-auto lg:mx-0 text-base leading-8 text-slate-600 sm:text-lg">
+              End-to-end engineering, cloud architecture, and modern product design crafted to scale your business operations and accelerate market delivery.
+            </p>
+
+            {/* Feature Checklist */}
+            <div className="hero-rise hero-rise-delay-3 mt-10 flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-3 text-sm font-semibold text-slate-600">
+              {['24/7 Availability', 'Cloud-Native Delivery', 'Full-Cycle Support'].map((item) => (
+                <span key={item} className="flex items-center gap-2">
+                  <Check className="h-4 w-4 text-blue-600" /> {item}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="flex flex-wrap justify-center gap-4">
-            {['React', 'Node.js', 'TypeScript', 'Python', 'AWS', 'Azure', 'Docker', 'Kubernetes', 'MongoDB', 'PostgreSQL'].map(tech => (
-              <div key={tech} className="px-6 py-3 bg-card border border-border rounded-xl text-foreground font-medium text-sm hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 cursor-default shadow-sm">
-                {tech}
-              </div>
-            ))}
+
+          {/* RIGHT COLUMN: IMAGE WITH TIGHT FLOATING LABELS */}
+          <div className="relative mx-auto w-full max-w-[30rem] lg:max-w-[36rem] flex items-center justify-center">
+            <div className="absolute top-3 left-3 sm:top-5 sm:left-5 z-20 flex items-center gap-2 rounded-xl border border-blue-100/80 bg-white/95 px-3 py-1.5 text-xs font-bold text-slate-700 shadow-md shadow-blue-100/60 backdrop-blur-md">
+              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>24/7 Support</span>
+            </div>
+
+            <div className="absolute top-3 right-3 sm:top-5 sm:right-5 z-20 flex items-center gap-1.5 rounded-xl border border-blue-100/80 bg-white/95 px-3 py-1.5 text-xs font-bold text-slate-700 shadow-md shadow-blue-100/60 backdrop-blur-md">
+              <Clock className="h-3.5 w-3.5 text-blue-600" />
+              <span>Rapid Response</span>
+            </div>
+
+            <div className="absolute bottom-3 left-3 sm:bottom-5 sm:left-5 z-20 flex items-center gap-1.5 rounded-xl border border-blue-100/80 bg-white/95 px-3 py-1.5 text-xs font-bold text-slate-700 shadow-md shadow-blue-100/60 backdrop-blur-md">
+              <Zap className="h-3.5 w-3.5 text-amber-500 fill-amber-500" />
+              <span>99.9% Uptime</span>
+            </div>
+
+            <div className="absolute bottom-3 right-3 sm:bottom-5 sm:right-5 z-20 flex items-center gap-1.5 rounded-xl border border-blue-100/80 bg-white/95 px-3 py-1.5 text-xs font-bold text-slate-700 shadow-md shadow-blue-100/60 backdrop-blur-md">
+              <ShieldCheck className="h-4 w-4 text-cyan-500" />
+              <span>SLA Guaranteed</span>
+            </div>
+
+            <img
+              src={ServiceHeroImg}
+              alt="Pravaah Technologies 24/7 Service Solutions"
+              className="relative z-10 w-full h-auto object-contain select-none transition-transform duration-700 hover:scale-[1.01]"
+            />
           </div>
+
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
-export default ServicesPage;
+export default ServicesHeroSection;
